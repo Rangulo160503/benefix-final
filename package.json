@@ -1,5 +1,5 @@
 {
-  "name": "spotify-clone",
+  "name": "Benefix",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "prop-types": "^15.8.1",
+    "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-qr-code": "^2.0.15",
     "react-router-dom": "^6.24.0"
   },
   "devDependencies": {

@@ -3,16 +3,18 @@ import PropTypes from "prop-types";
 import ModalCrearBeneficio from "./ModalCrearBeneficio";
 
 
-const BenefitCard = ({ benefit, onGuardar, onEliminar }) => {
+const BenefitCard = ({ benefit, onGuardar, onEliminar, onClick }) => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   
 
   const handleClick = () => {
-    if (benefit.name === "Crear beneficio") {
-      setIsModalOpen(true);
-    }
-  };
+  if (benefit.name === "Crear beneficio") {
+    setIsModalOpen(true);
+  } else if (onClick) {
+    onClick(benefit); // ✅ activa el modal QR
+  }
+};
   const handleGuardar = (nuevoBeneficio) => {
   onGuardar(nuevoBeneficio);
   setIsModalOpen(false); // Opcional: cerrar modal después de guardar
@@ -28,7 +30,10 @@ const BenefitCard = ({ benefit, onGuardar, onEliminar }) => {
       >
            {benefit.name !== "Crear beneficio" && (
   <button
-  onClick={() => onEliminar(benefit.id)}
+  onClick={(e) => {
+    e.stopPropagation();
+    onEliminar(benefit.id);
+  }}
   className="absolute bottom-2 right-2 w-6 h-6 flex items-center justify-center rounded-full bg-black text-white hover:bg-red-600 transition z-10"
   title="Eliminar beneficio"
 >
@@ -69,7 +74,7 @@ BenefitCard.propTypes = {
   }).isRequired,
   onGuardar: PropTypes.func.isRequired,
   onEliminar: PropTypes.func.isRequired,
-
+  onClick: PropTypes.func,
 };
 
 export default BenefitCard;
