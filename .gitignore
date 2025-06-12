@@ -31,3 +31,8 @@ dist-ssr
 
 # Logs
 *.log
+
+# Ignorar archivos con credenciales sensibles
+backend/googleAPI/.env
+backend/googleAPI/src/credentials/oauth_credentials.json
+backend/googleAPI/token/token.json
